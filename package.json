@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "test": "ts-node backjoon/testing/test.ts > ./dev/stdout_my && echo test result: && fc dev\\stdout dev\\stdout_my",
+    "test-ts": "ts-node backjoon/testing/test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23"
+  }
+}
