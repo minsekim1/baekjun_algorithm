@@ -6,7 +6,8 @@
   },
   "scripts": {
     "test": "ts-node backjoon/testing/test.ts > ./dev/stdout_my && echo test result: && fc dev\\stdout dev\\stdout_my",
-    "test-ts": "ts-node backjoon/testing/test.ts"
+    "test-ts": "ts-node backjoon/testing/test.ts",
+    "up": "git add . && git commit -m \"datilay backup \" && git push"
   },
   "devDependencies": {
     "@types/node": "^17.0.23"
