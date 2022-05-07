@@ -1,10 +1,5 @@
-const fs = require("fs");
-// const inputList: string[] = fs.readFileSync("./dev/stdin").toString().trim().split("\n");
-// const inputRow: string[] = fs.readFileSync("./dev/stdin").toString().split(" ");
-// const input: string = fs.readFileSync("./dev/stdin").toString().trim();
-const inputNumber: number = +fs.readFileSync("./dev/stdin").toString().trim();
+// let list: number[] = Array.from({ length: n }).map((item, i) => i + 1);
 
-const list: number[] = [];
 // // 조합 : 중복없이 모든 경우. [4,3] 이랑 [3,4]랑 같음.
 // const getCombinations = (arr: number[], num: number) => {
 //   const results: number[][] = [];
@@ -43,43 +38,18 @@ const list: number[] = [];
 //   return results;
 // };
 
-// 중복순열 : 중복포함 모든 경우. [4,3] 이랑 [3,4]랑 다름.
+// // 중복순열 : 중복포함 모든 경우. [4,3] 이랑 [3,4]랑 다름.
 // const getPermutationsDup = (arr: number[], num: number) => {
 //   const results: number[][] = [];
 //   if (num === 1) return arr.map((v) => [v]);
 //   arr.forEach((fixed, index, origin) => {
 //     // 기준값(fixed)이 있기 때문에 선택하려는 개수에서 - 1 을 해준다.
-//     const permutations = getPermutationsDup(origin, num - 1);
+//     const permutations = getPermutations(origin, num - 1);
 //     // 기준값(fixed)에 순열(permutations)을 붙인다.
 //     const attached = permutations.map((v) => [fixed, ...v]);
 //     // 붙인 값을 결과 값에 넣어준다.
 //     results.push(...attached);
 //   });
+
 //   return results;
 // };
-let start = +new Date();
-let ANSWER = 0;
-const size = inputNumber * inputNumber;
-const nQueen = (prefix: number[], row: number) => {
-  console.log(prefix.join(" ") + "\n");
-  if (inputNumber === row) ANSWER++; //End Condition
-  else
-    for (let i = 0; i < inputNumber; i++) {
-      //Continue Condition
-      if (!prefix.includes(row * i)) {
-        prefix.push(row * i);
-        for (let col = 0; col + i < inputNumber && row + col < inputNumber; col++)
-          if (!prefix.includes((row + col) * (i + col))) prefix.push((row + col) * (i + col));
-        for (let col = 0; row + col < inputNumber && i - col < inputNumber; col++)
-          if (!prefix.includes((row + col) * (i - col))) prefix.push((row + col) * (i - col));
-        for (let col = 0; row + col < inputNumber; col++)
-          if (!prefix.includes((row + col) * i)) prefix.push((row + col) * i);
-        nQueen(prefix, row + 1);
-        prefix.pop();
-      }
-    }
-};
-nQueen(list, 0);
-let end = +new Date();
-console.log(ANSWER);
-console.log(end - start);
