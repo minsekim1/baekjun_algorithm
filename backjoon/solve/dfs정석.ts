@@ -9,7 +9,13 @@
 // let arr = [];
 // let checkedArr = new Array(M).fill(false);
 
-// let dfs = (length) => {
+// const M = 8,
+//   N = 8;
+// let result = "";
+// let arr: number[] = [];
+// let checkedArr: boolean[] = new Array(M).fill(false);
+
+// let dfs = (length: number) => {
 //   if (length === N) {
 //     result += arr.join(" ") + "\n";
 //     return;
@@ -25,4 +31,4 @@
 //   return result;
 // };
 
-// console.log(dfs(0).trim());
+// console.log(dfs(0));

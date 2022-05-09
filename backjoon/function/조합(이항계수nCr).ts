@@ -1,4 +1,7 @@
 // 기본사용법
+// (N)
+// --- = (N!)/(K!*(N-K)!)
+// (K)
 // const combination = (N: number, K: number) => {
 //   let n = 1;
 //   let r = 1;
