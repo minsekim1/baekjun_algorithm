@@ -4,15 +4,9 @@ const inputList: string[] = fs.readFileSync("./dev/stdin").toString().trim().spl
 // const input: string = fs.readFileSync("./dev/stdin").toString().trim();
 // const inputN: number = +fs.readFileSync("./dev/stdin").toString().trim();
 
-const dp: number[][] = [[Number(inputList[0][0])]];
-const input = inputList.slice(2).map((item) => item.split(" ").map(Number));
+const dp: number[] = inputList.slice(1).map(Number);
+const stair: number[] = new Array(...dp);
 
-input.map((item, i) => {
-  console.log(item);
+dp.map((item, i) => (i < 3 ? null : (dp[i] = Math.max(dp[i - 2] + stair[i], stair[i - 1] + stair[i] + dp[i - 3]))));
 
-  // item.map((item, j) => {
-  //   dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j + 1]);
-  // });
-});
-
-console.log(dp);
+console.log(dp, stair);
