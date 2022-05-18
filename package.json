@@ -5,9 +5,9 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "test": "ts-node backjoon/testing/test.ts > ./dev/stdout_my && echo test result: && fc dev\\stdout dev\\stdout_my",
-    "test-js": "node backjoon/testing/test.js > ./dev/stdout_my && echo test result: && fc dev\\stdout dev\\stdout_my",
-    "test-ts": "ts-node backjoon/testing/test.ts",
+    "test": "ts-node backjoon/testing/test.ts > ./dev/stdout_my echo test result: && fc dev\\stdout dev\\stdout_my",
+    "test-mac": "ts-node backjoon/testing/test.ts",
+    "test-js": "node backjoon/testing/test.js",
     "up": "git add . && git commit -m \"datilay backup \" && git push"
   },
   "devDependencies": {

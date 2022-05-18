@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 15
 push 1
 push 2
@@ -14,3 +15,14 @@ pop
 push 3
 empty
 front
+=======
+2
+3
+Fred Barney
+Barney Betty
+Betty Wilma
+3
+Fred Barney
+Betty Wilma
+Barney Betty
+>>>>>>> d2f4374600d6e74a553e53b5cbad12dad3b897c8
