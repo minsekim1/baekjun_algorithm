@@ -6,6 +6,7 @@
   },
   "scripts": {
     "test": "ts-node backjoon/testing/test.ts > ./dev/stdout_my && echo test result: && fc dev\\stdout dev\\stdout_my",
+    "test-js": "node backjoon/testing/test.js > ./dev/stdout_my && echo test result: && fc dev\\stdout dev\\stdout_my",
     "test-ts": "ts-node backjoon/testing/test.ts",
     "up": "git add . && git commit -m \"datilay backup \" && git push"
   },
