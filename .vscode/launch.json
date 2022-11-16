@@ -5,6 +5,20 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"type": "java",
+			"name": "Launch Score",
+			"request": "launch",
+			"mainClass": "Score",
+			"projectName": "baekjun_algorithm_da1154c7"
+		},
+		{
+			"type": "java",
+			"name": "Launch Score",
+			"request": "launch",
+			"mainClass": "java.Score",
+			"projectName": "baekjun_algorithm_da1154c7"
+		},
+		{
 			"type": "pwa-chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",

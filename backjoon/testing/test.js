@@ -1,28 +1,31 @@
-const fs = require("fs");
-const inputList = fs.readFileSync("./dev/stdin").toString().trim().split("\n");
+class Friend {
+  constructor(email) {
+    this.email = email;
+    this.friends = [];
+  }
 
-const size = Number(inputList[0].split(" ")[0]);
-const list = Array.from({ length: size + 1 }).map((item, i) => i);
+  addFriendship(friend) {
+    this.friends.push(friend);
+    friend.friends.push(this);
+  }
 
-const getParent = (list, n) => {
-  if (list[n] == n) return n;
-  return (list[n] = getParent(list, list[n]));
-};
-const unionParent = (list, n1, n2) => {
-  const n3 = getParent(list, n1);
-  const n4 = getParent(list, n2);
-  if (n3 < n4) list[n4] = n3;
-  else list[n3] = n4;
-};
-const findParent = (list, n1, n2) => {
-  return getParent(list, n1) === getParent(list, n2);
-};
+  getParent(friend) {
+    if (this.email == friend.email) return email;
+    else return getParent(this.friends);
+  }
 
-let result = "";
-inputList.slice(1).map((item) => {
-  const [isAnswer, n1, n2] = item.split(" ").map(Number);
-  if (isAnswer) result += findParent(list, n1, n2) ? "YES\n" : "NO\n";
-  else unionParent(list, n1, n2);
-});
+	canBeConnected(friend) {
+		return friend.friends.includes(this.email)
+	}
+}
 
-console.log(result.trimEnd());
+const a = new Friend("A");
+const b = new Friend("B");
+const c = new Friend("C");
+const d = new Friend("D");
+
+a.addFriendship(b);
+b.addFriendship(c);
+d.addFriendship(c);
+
+console.log(a.canBeConnected(c),a.friends,b.friends);
