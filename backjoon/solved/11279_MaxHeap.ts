@@ -2,9 +2,10 @@
 import * as fs from "fs";
 
 const input = fs.readFileSync("/dev/stdin", "utf-8").trim().split("\n");
+const N = Number(input[0]);
 const queries = input.slice(1).map(Number);
 
-class MinAbsHeap {
+class MaxHeap {
   heap: number[];
 
   constructor() {
@@ -20,12 +21,10 @@ class MinAbsHeap {
     let index = this.heap.length - 1;
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
-      if (this.compare(this.heap[index], this.heap[parentIndex])) {
-        [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
-        index = parentIndex;
-      } else {
-        break;
-      }
+      if (this.heap[parentIndex] >= this.heap[index]) break;
+
+      [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
+      index = parentIndex;
     }
   }
 
@@ -33,39 +32,37 @@ class MinAbsHeap {
     if (this.heap.length === 0) return 0;
     if (this.heap.length === 1) return this.heap.pop()!;
 
-    const min = this.heap[0];
+    const max = this.heap[0];
     this.heap[0] = this.heap.pop()!;
     this.sinkDown(0);
-    return min;
+    return max;
   }
 
   sinkDown(index: number) {
     const length = this.heap.length;
+    const element = this.heap[index];
 
     while (true) {
       let left = 2 * index + 1;
       let right = 2 * index + 2;
-      let smallest = index;
+      let largest = index;
 
-      if (left < length && this.compare(this.heap[left], this.heap[smallest])) smallest = left;
-      if (right < length && this.compare(this.heap[right], this.heap[smallest])) smallest = right;
+      if (left < length && this.heap[left] > this.heap[largest]) {
+        largest = left;
+      }
+      if (right < length && this.heap[right] > this.heap[largest]) {
+        largest = right;
+      }
 
-      if (smallest === index) break;
+      if (largest === index) break;
 
-      [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];
-      index = smallest;
+      [this.heap[index], this.heap[largest]] = [this.heap[largest], this.heap[index]];
+      index = largest;
     }
-  }
-
-  compare(a: number, b: number): boolean {
-    const absA = Math.abs(a),
-      absB = Math.abs(b);
-    if (absA !== absB) return absA < absB;
-    return a < b;
   }
 }
 
-const heap = new MinAbsHeap();
+const heap = new MaxHeap();
 const output: number[] = [];
 
 for (const q of queries) {
@@ -77,3 +74,5 @@ for (const q of queries) {
 }
 
 console.log(output.join("\n"));
+
+

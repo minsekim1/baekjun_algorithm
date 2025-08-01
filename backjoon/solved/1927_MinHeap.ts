@@ -2,9 +2,10 @@
 import * as fs from "fs";
 
 const input = fs.readFileSync("/dev/stdin", "utf-8").trim().split("\n");
+const N = Number(input[0]);
 const queries = input.slice(1).map(Number);
 
-class MinAbsHeap {
+class MinHeap {
   heap: number[];
 
   constructor() {
@@ -20,12 +21,9 @@ class MinAbsHeap {
     let index = this.heap.length - 1;
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
-      if (this.compare(this.heap[index], this.heap[parentIndex])) {
-        [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
-        index = parentIndex;
-      } else {
-        break;
-      }
+      if (this.heap[parentIndex] <= this.heap[index]) break;
+      [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
+      index = parentIndex;
     }
   }
 
@@ -47,8 +45,8 @@ class MinAbsHeap {
       let right = 2 * index + 2;
       let smallest = index;
 
-      if (left < length && this.compare(this.heap[left], this.heap[smallest])) smallest = left;
-      if (right < length && this.compare(this.heap[right], this.heap[smallest])) smallest = right;
+      if (left < length && this.heap[left] < this.heap[smallest]) smallest = left;
+      if (right < length && this.heap[right] < this.heap[smallest]) smallest = right;
 
       if (smallest === index) break;
 
@@ -56,16 +54,10 @@ class MinAbsHeap {
       index = smallest;
     }
   }
-
-  compare(a: number, b: number): boolean {
-    const absA = Math.abs(a),
-      absB = Math.abs(b);
-    if (absA !== absB) return absA < absB;
-    return a < b;
-  }
 }
 
-const heap = new MinAbsHeap();
+
+const heap = new MinHeap();
 const output: number[] = [];
 
 for (const q of queries) {
@@ -77,3 +69,5 @@ for (const q of queries) {
 }
 
 console.log(output.join("\n"));
+
+
