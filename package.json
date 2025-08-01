@@ -5,10 +5,7 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "test": "ts-node backjoon/testing/test.ts",
-    "test-diff": "ts-node backjoon/testing/test.ts > ./dev/stdout_my echo test result: && fc dev\\stdout dev\\stdout_my",
-    "test-mac": "ts-node backjoon/testing/test.ts",
-    "test-js": "node backjoon/testing/test.js",
+    "test": "ts-node backjoon/testing/solution.ts < backjoon/testing/input.txt > backjoon/testing/output.txt",
     "up": "git add . && git commit -m \"datilay backup \" && git push"
   },
   "devDependencies": {
